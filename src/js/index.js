@@ -2,4 +2,4 @@
 
 import num from './test';
 
-console.log(`I imported ${num} from a module`);
+console.log(`I imported ${num} from a module test.js`);

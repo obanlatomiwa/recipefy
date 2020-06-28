@@ -4,15 +4,13 @@ const path = require('path');
 module.exports = {
     entry: './src/js/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist/js'),
-        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'js/bundle.js',
     },
+    devServer: {
+        contentBase: './dist'
+    }
 
-    mode: 'development',
-
-    // devServer: {
-    //     contentBase: './dist'
-    // },
     // plugins: [
     //     new htmlWebpackPlugin({
     //         filename: 'index.html',
