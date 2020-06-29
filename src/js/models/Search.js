@@ -11,6 +11,7 @@ export default class Search {
         // const result = await axios(`${cors}https://recipesapi.herokuapp.com/api/search?&q=${this.query}`);
         const result = await axios(`${cors}https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&q=${this.query}`);
         this.recipes = result.data.results;
+        console.log(result)
         }catch(error){
             alert(error);
         }
