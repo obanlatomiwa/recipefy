@@ -3557,23 +3557,10 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 /*!*************************!*\
   !*** ./src/js/index.js ***!
   \*************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _test__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./test */ \"./src/js/test.js\");\n// Global app controller\n\nvar x = 23;\nconsole.log(\"I imported \".concat(_test__WEBPACK_IMPORTED_MODULE_0__[\"default\"], \" from a module test.js! Variable x is \").concat(x));\n\n//# sourceURL=webpack:///./src/js/index.js?");
-
-/***/ }),
-
-/***/ "./src/js/test.js":
-/*!************************!*\
-  !*** ./src/js/test.js ***!
-  \************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconsole.log('Imported Module');\n/* harmony default export */ __webpack_exports__[\"default\"] = (12345);\n\n//# sourceURL=webpack:///./src/js/test.js?");
+eval("\n\n//# sourceURL=webpack:///./src/js/index.js?");
 
 /***/ }),
 
