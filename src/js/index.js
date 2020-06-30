@@ -2,6 +2,7 @@
 //https://recipesapi.herokuapp.com/api/search
 
 import Search from './models/Search';
+import Recipe from './models/Recipe'
 import {DOM, renderLoader, removeLoader} from './views/base';
 import * as searchView from './views/searchView'
 
@@ -14,6 +15,11 @@ import * as searchView from './views/searchView'
 
 // state keeps current data
 const state = {};
+
+
+/**
+ * SEARCH CONTROLLER
+ */
 
 const controlSearch = async () => {
     // get query from view
@@ -55,3 +61,10 @@ DOM.resultPages.addEventListener('click', e => {
 
 
 
+/**
+ * RECIPE CONTROLLER
+ */
+
+const res = new Recipe('33631');
+res.getRecipe();
+console.log(res)
