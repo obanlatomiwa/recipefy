@@ -2,9 +2,11 @@
 //https://recipesapi.herokuapp.com/api/search
 
 import Search from './models/Search';
-import Recipe from './models/Recipe'
+import Recipe from './models/Recipe';
 import {DOM, renderLoader, removeLoader} from './views/base';
 import * as searchView from './views/searchView'
+import * as recipeView from './views/recipeView'
+
 
 /** Global State of the app
  * search object
@@ -33,12 +35,18 @@ const controlSearch = async () => {
         searchView.clearResults();
         renderLoader(DOM.searchResult);
 
+        try {
         // search for recipe
         await state.search.getResults();
 
         // render search results on UI
         removeLoader();
         searchView.renderResults(state.search.recipes);
+        } catch (error) {
+            alert('Something wrong with the search...');
+            removeLoader(); 
+        }
+        
 
     }
 };
@@ -65,6 +73,38 @@ DOM.resultPages.addEventListener('click', e => {
  * RECIPE CONTROLLER
  */
 
-const res = new Recipe('33631');
-res.getRecipe();
-console.log(res)
+const controlRecipe= async() => {
+    // get id from url
+    const id = window.location.hash.replace('#', '');
+    console.log(id);
+
+    if (id) {
+        // prepare UI
+        recipeView.clearRecipe();
+        renderLoader(DOM.recipe);
+
+        // create new recipe object
+        state.recipe = new Recipe(id);
+        try {
+        // extract recipe data
+        await state.recipe.getRecipe();
+
+        // render recipe to UI
+        removeLoader();
+        recipeView.renderRecipe(state.recipe);
+        console.log(state.recipe)
+    } catch (error) {
+            alert('Error processing Recipe!');
+        }
+        
+    }
+}
+
+// adding global events  
+['hashchange','load'].forEach(event => window.addEventListener(event, controlRecipe));
+
+
+// testing
+// const res = new Recipe('33631');
+// res.getRecipe();
+// console.log(res)
