@@ -9,7 +9,7 @@ export default class Search {
         const apiKey = '3ffa9f208fba4366b7f71a8a17bd22ae'
         try{
         // const result = await axios(`${cors}https://recipesapi.herokuapp.com/api/search?&q=${this.query}`);
-        const result = await axios(`${cors}https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&q=${this.query}`);
+        const result = await axios(`${cors}https://api.spoonacular.com/recipes/search?apiKey=${apiKey}&query=${this.query}`);
         this.recipes = result.data.results;
         console.log(result)
         }catch(error){

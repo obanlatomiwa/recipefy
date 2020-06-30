@@ -2,7 +2,7 @@
 //https://recipesapi.herokuapp.com/api/search
 
 import Search from './models/Search';
-import {DOM} from './views/base';
+import {DOM, renderLoader, removeLoader} from './views/base';
 import * as searchView from './views/searchView'
 
 /** Global State of the app
@@ -25,12 +25,15 @@ const controlSearch = async () => {
         // prepare UI for search results
         searchView.clearInput();
         searchView.clearResults();
+        renderLoader(DOM.searchResult);
 
         // search for recipe
         await state.search.getResults();
 
         // render search results on UI
+        removeLoader();
         searchView.renderResults(state.search.recipes);
+
     }
 };
 
