@@ -21,14 +21,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.1",
-    "axios": "^0.19.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/obanlatomiwa/recipefy.git"
-  },
-  "bugs": {
-    "url": "https://github.com/obanlatomiwa/recipefy/issues"
-  },
-  "homepage": "https://github.com/obanlatomiwa/recipefy#readme"
+    "axios": "^0.19.2",
+    "psl": "^1.8.0"
+  }
+
 }

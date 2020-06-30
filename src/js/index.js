@@ -37,12 +37,21 @@ const controlSearch = async () => {
     }
 };
 
-const searchBox = DOM.searchRecipe.addEventListener('submit', e => {
+// const searchBox = 
+DOM.searchRecipe.addEventListener('submit', e => {
     e.preventDefault(); 
     controlSearch();
 });
 
+DOM.resultPages.addEventListener('click', e => {
+    const button = e.target.closest('.btn-inline');
+    if (button){
+        searchView.clearResults();
+        const goToPage = parseInt(button.dataset.goto, 10);
+        searchView.renderResults(state.search.recipes, goToPage);
 
+    }
+})
 
 
 
