@@ -22,26 +22,16 @@ export default class Recipe {
         }
     }
 
-// // calculate cooking time
-// calcTime() {
-//     // assume we need 15mins for each ingredient
-//     const numIng = this.ingredients.length;
-//     const periods = Math.ceil(numIng / 3);
-//     this.time = periods * 15;
-// }
 
-// calcServings() {
-//     this.servings = 4;
-// }
+    updateServings(type){
+        // update servings
+        const newServings = type === 'dec' ? this.servings -1 : this.servings + 1;
 
-// // processing Ingredients
-// parseIngredients(){
-//     const newIngredients = this.ingredients.map(el => {
-
-//     });
-
-//     this.ingredients = newIngredients;
-// }
-
+        // update ingredients
+        this.ingredients.forEach(ingredient => {
+            ingredient.amount *= (newServings / this.servings);
+        })
+        this.servings = newServings
+    }
 
 }
