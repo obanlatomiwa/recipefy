@@ -8,7 +8,7 @@ export default class Recipe {
 
     async getRecipe(){
         try {
-            const result = await axios(`${cors}https ://api.spoonacular.com/recipes/${this.id}/information?apiKey=${apiKey}&includeNutrition=false`);
+            const result = await axios(`${cors}https://api.spoonacular.com/recipes/${this.id}/information?apiKey=${apiKey}&includeNutrition=false`);
             this.title = result.data.title;
             this.publisher = result.data.sourceName;
             this.img = result.data.image;

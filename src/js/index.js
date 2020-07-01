@@ -83,6 +83,11 @@ const controlRecipe= async() => {
         recipeView.clearRecipe();
         renderLoader(DOM.recipe);
 
+        // highlight selected search item
+        if (state.search){
+            searchView.highlightSelected(id);
+        }
+
         // create new recipe object
         state.recipe = new Recipe(id);
         try {
@@ -103,8 +108,3 @@ const controlRecipe= async() => {
 // adding global events  
 ['hashchange','load'].forEach(event => window.addEventListener(event, controlRecipe));
 
-
-// testing
-// const res = new Recipe('33631');
-// res.getRecipe();
-// console.log(res)

@@ -1,6 +1,25 @@
 import {DOM} from './base';
+import {Fraction} from 'fractional';
 
-export const clearRecipe = ingredient => {
+// formats the amount per ingredient required
+const formatAmount = amount => {
+    if (amount){
+        [integer, decimal] = amount.toString().split('.').map(el => parseInt(el, 10));
+
+        if (!decimal) return amount;
+
+        if (integer === 0){
+            const fraction = new Fraction(amount);
+            return `${fraction.numerator}/${fraction.denominator}`;
+        }else{
+            const fraction = new Fraction(amount - integer);
+            return `${integer} ${fraction.numerator}/${fraction.denominator}`;
+        }
+    }
+    return '?'; 
+}
+
+export const clearRecipe = () => {
     DOM.recipe.innerHTML = '';
 }
 
