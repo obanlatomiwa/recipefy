@@ -3,6 +3,7 @@
 
 import Search from './models/Search';
 import Recipe from './models/Recipe';
+import List from './models/List';
 import {DOM, renderLoader, removeLoader} from './views/base';
 import * as searchView from './views/searchView'
 import * as recipeView from './views/recipeView'
@@ -97,7 +98,6 @@ const controlRecipe= async() => {
         // render recipe to UI
         removeLoader();
         recipeView.renderRecipe(state.recipe);
-        console.log(state.recipe)
     } catch (error) {
             alert('Error processing Recipe!');
         }
@@ -121,7 +121,6 @@ DOM.recipe.addEventListener('click', e => {
         state.recipe.updateServings('inc'); 
         recipeView.updateServingsIngredients(state.recipe); 
     }
-    console.log(state.recipe);
 })
 
 
@@ -129,4 +128,4 @@ DOM.recipe.addEventListener('click', e => {
  * LIST CONTROLLER
  */
 
- 
+window.l = new List();
