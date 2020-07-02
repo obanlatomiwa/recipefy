@@ -109,6 +109,10 @@ const controlRecipe= async() => {
 }
 
 
+
+// adding global events  
+['hashchange','load'].forEach(event => window.addEventListener(event, controlRecipe));
+
 /**
  * LIST CONTROLLER
  */
@@ -126,23 +130,25 @@ const controlList = () => {
 
 // handle delete and update shopping list item
 
-// DOM.shoppingList.addEventListener('click', e => {
-//     const id = e.target.closest('.shopping__item').dataset.itemid;
+DOM.shoppingList.addEventListener('click', e => {
+    const id = e.target.closest('.shopping__item').dataset.itemid;
 
-//     // handle delete button
-//     if(e.target.matches('.shopping__delete, .shopping__delete *')){
-//         // delete from state
-//         state.list.deleteItem(id);
+    // handle delete button
+    if(e.target.matches('.shopping__delete, .shopping__delete *')){
+        // delete from state
+        state.list.deleteItem(id);
 
-//         // delete from UI
-//         listView.deleteItem(id);
-//     }
+        // delete from UI
+        listView.deleteItem(id);
+        
+    // handle amount update
+    }else if(e.target.matches('.shopping__count-value')){
+        const value = parseFloat(e.target.value, 10);
+        state.list.updateAmount(id, value);
+    }
 
-// })
+})
 
-
-// adding global events  
-['hashchange','load'].forEach(event => window.addEventListener(event, controlRecipe));
 
 // handling recipe button clicks
 DOM.recipe.addEventListener('click', e => {
