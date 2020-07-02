@@ -20,7 +20,6 @@ import {DOM, renderLoader, removeLoader} from './views/base';
 
 // state keeps current data
 const state = {};
-window.state = state;
 
 
 /**
@@ -80,7 +79,6 @@ DOM.resultPages.addEventListener('click', e => {
 const controlRecipe= async() => {
     // get id from url
     const id = window.location.hash.replace('#', '');
-    console.log(id);
 
     if (id) {
         // prepare UI
@@ -199,7 +197,11 @@ window.addEventListener('load', ()=> {
     // restore likes
     state.likes.readStorage();
      
+    // toggle like menu button
     likeView.toggleLikeMenu(state.likes.getNumLikes());
+
+    // render existing likes
+    state.likes.likes.forEach(like => likeView.renderLike(like))
 })
 
 

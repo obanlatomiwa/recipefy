@@ -4,15 +4,16 @@ import {Fraction} from 'fractional';
 // formats the amount per ingredient required
 const formatAmount = amount => {
     if (amount){
-        [integer, decimal] = amount.toString().split('.').map(el => parseInt(el, 10));
+        const newAmount = Math.round(amount * 10000) / 10000; 
+        const [integer, decimal] = newAmount.toString().split('.').map(el => parseInt(el, 10));
 
-        if (!decimal) return amount;
+        if (!decimal) return newAmount;
 
         if (integer === 0){
-            const fraction = new Fraction(amount);
+            const fraction = new Fraction(newAmount);
             return `${fraction.numerator}/${fraction.denominator}`;
         }else{
-            const fraction = new Fraction(amount - integer);
+            const fraction = new Fraction(newAmount - integer);
             return `${integer} ${fraction.numerator}/${fraction.denominator}`;
         }
     }
@@ -28,7 +29,7 @@ const createIngredient = ingredient => `
         <svg class="recipe__icon">
             <use href="img/icons.svg#icon-check"></use>
         </svg>
-        <div class="recipe__count">${ingredient.amount}</div>
+        <div class="recipe__count">${formatAmount(ingredient.amount)}</div>
         <div class="recipe__ingredient">
             <span class="recipe__unit">${ingredient.unit}</span>
             ${ingredient.name}
@@ -126,8 +127,6 @@ export const updateServingsIngredients = recipe => {
     // update ingredients
     const countElements = Array.from(document.querySelectorAll('.recipe__count'));
     countElements.forEach((el, i) => {
-        // el.textContent = formatAmount(recipe.ingredients[i].amount);
-        el.textContent = recipe.ingredients[i].amount;
-
+        el.textContent = formatAmount(recipe.ingredients[i].amount);
     })
 }
