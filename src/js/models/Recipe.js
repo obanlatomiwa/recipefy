@@ -16,7 +16,6 @@ export default class Recipe {
             this.ingredients = result.data.extendedIngredients;
             this.time = result.data.cookingMinutes;
             this.servings = result.data.servings;
-            console.log(result); 
         } catch (error) {
             alert(error);
         }

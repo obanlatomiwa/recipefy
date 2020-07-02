@@ -16,12 +16,12 @@ export const highlightSelected = id => {
     resultsArr.forEach(el => {
         el.classList.remove('results__link--active');
     })
-    document.querySelector(`a[href="#${id}"]`).classList.add('result__link--active');
+    document.querySelector(`.results__link[href="#${id}"]`).classList.add('results__link--active');
 }
 
 
 // limit the recipe title render to the UI
-const limitRecipeTitle = (title, limit = 17, deLimiter = ' ') => {
+export const limitRecipeTitle = (title, limit = 17, deLimiter = ' ') => {
     const newTitle = [];
     if (title.length > limit){
         title.split(deLimiter).reduce((acc, cur, i, arr)=> {
