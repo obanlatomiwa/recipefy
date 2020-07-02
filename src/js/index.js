@@ -227,6 +227,4 @@ DOM.recipe.addEventListener('click', e => {
     }
 })
 
-
-window.l = new List();
- 
+  

@@ -2,23 +2,55 @@ import {DOM} from './base';
 import {Fraction} from 'fractional';
 
 // formats the amount per ingredient required
+// const formatAmount = amount => {
+//     if (amount){
+//         const newAmount = Math.round(amount * 10000) / 10000; 
+//         const [integer, decimal] = newAmount.toString().split('.').map(el => parseInt(el, 10));
+
+//         if (!decimal) return newAmount;
+
+//         if (integer === 0){
+//             const fraction = new Fraction(newAmount);
+//             return `${fraction.numerator}/${fraction.denominator}`;
+//         }else{
+//             const fraction = new Fraction(newAmount - integer);
+//             return `${integer} ${fraction.numerator}/${fraction.denominator}`;
+//         }
+//     }
+//     return '?'; 
+// }
+
 const formatAmount = amount => {
-    if (amount){
-        const newAmount = Math.round(amount * 10000) / 10000; 
-        const [integer, decimal] = newAmount.toString().split('.').map(el => parseInt(el, 10));
+    if (amount) {
+        const [integer, decimal] = amount.toString().split('.').map(el => parseInt(el, 10));
+        
+        if (!decimal) return amount;
+        const places = [1250, 2500, 5000, 7500, 8250, 9999];
+        let decimals = decimal;
+        decimals *= 1000;
+        decimals /= 10**(Math.floor(Math.log10(decimals)) - 3);
+        decimals = Math.floor(decimals);
+        
+        let x = places.length - 1;
+        for (const [i, el] of places.entries()) {
+            if (el - decimals >= 0) {
+                x = i;
+                break;        
+            }}
 
-        if (!decimal) return newAmount;
-
-        if (integer === 0){
-            const fraction = new Fraction(newAmount);
+            decimals = x === 5? 1: places[x]/10000;
+        
+        if (integer === 0) {
+            const fraction = new Fraction(decimals);
             return `${fraction.numerator}/${fraction.denominator}`;
-        }else{
-            const fraction = new Fraction(newAmount - integer);
+        } else {
+            const fraction = new Fraction(decimals);
             return `${integer} ${fraction.numerator}/${fraction.denominator}`;
         }
     }
-    return '?'; 
+    return amount;
 }
+
 
 export const clearRecipe = () => {
     DOM.recipe.innerHTML = '';
